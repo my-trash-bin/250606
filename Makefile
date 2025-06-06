@@ -1,5 +1,4 @@
 DLL_SUFFIX := $(if $(findstring Darwin,$(OS)),.dylib,.so)
-ENV_NAME := $(if $(findstring Darwin,$(OS)),DYLD_LIBRARY_PATH,LD_LIBRARY_PATH)
 
 all: test
 
@@ -8,7 +7,7 @@ build:
 	gcc -shared -o libabt$(DLL_SUFFIX) abt.o
 
 clean:
-	rm -f abt.o libabt$(DLL_SUFFIX)
+	rm -f abt.o libabt$(DLL_SUFFIX) test/malloc_mock.o test/libmalloc_mock$(DLL_SUFFIX) test/test
 
 test-build: build
 	gcc -c -fPIC test/malloc_mock.c -o test/malloc_mock.o

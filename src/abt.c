@@ -19,11 +19,15 @@ void abt_start(void) {
     abt_error("abt_start() called twice");
   }
   started = true;
+  failure = false;
 }
 
 void abt_end(void) {
   if (!started) {
     abt_error("abt_end() called without abt_start()");
+  }
+  if (pause_count) {
+    abt_error("abt_end() called with abt_pause()");
   }
   started = false;
   if (is_forked) {

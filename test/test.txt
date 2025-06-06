@@ -1,1 +1,5 @@
-ABT Failure: Found leaked memory
+This will be printed three times
+This will be printed three times
+This will be printed three times
+This will be printed once
+ABT Failure: EXPECTED: Found leaked memory
