@@ -13,8 +13,8 @@ clean:
 test-build:
 	gcc -c -fPIC test/malloc_mock.c -o test/malloc_mock.o
 	gcc -shared -o test/libmalloc_mock$(DLL_SUFFIX) test/malloc_mock.o
-  gcc test/test.c -L. -Ltest -labt -lmalloc_mock -o test/test
+	gcc test/test.c -L. -Ltest -labt -lmalloc_mock -o test/test
 
 test: test-build
-  ./test/test
+	./test/test
 	# $(ENV_NAME)=test ./test/test
