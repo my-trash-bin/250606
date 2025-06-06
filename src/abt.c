@@ -1,3 +1,5 @@
+// It will not work on Windows even on Cygwin, as it uses RTLD_NEXT.
+
 #include "../include/abt.h"
 
 #include <stdbool.h>
@@ -6,7 +8,6 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-// you need to compile it with Cygwin on Windows
 
 static bool started = false;
 static bool failure = false;
