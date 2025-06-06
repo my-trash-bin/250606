@@ -12,7 +12,7 @@ extern "C" {
 // in test
 void abt_start(void);
 void abt_end(void);
-void abt_is_successful_branch(void);
+bool abt_is_successful_branch(void);
 
 // in mock
 bool abt_started(void);
