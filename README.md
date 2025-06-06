@@ -92,10 +92,10 @@ int main(void) {
   res_t *a;
   res_t *b;
   const err_t result = init_two_my_resources(&a, &b);
-  if (result && !abt_is_successful_branch()) {
+  if (!result && !abt_is_successful_branch()) {
     abt_fail("At least one allocation failed but result is OK");
   }
-  if (!result && abt_is_successful_branch()) {
+  if (result && abt_is_successful_branch()) {
     abt_fail("All allocation succeed but result is not OK");
   }
   if (!result) {

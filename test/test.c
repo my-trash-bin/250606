@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 #include "../include/abt.h"
@@ -25,10 +26,10 @@ void tester(void) {
   void *a;
   void *b;
   const err_t result = testee(&a, &b);
-  if (result && !abt_is_successful_branch()) {
+  if (!result && !abt_is_successful_branch()) {
     abt_fail("At least one allocation failed but result is OK");
   }
-  if (!result && abt_is_successful_branch()) {
+  if (result && abt_is_successful_branch()) {
     abt_fail("All allocation succeed but result is not OK");
   }
   if (!result) {
@@ -39,6 +40,7 @@ void tester(void) {
     abt_fail("Found leaked memory");
   }
   abt_end();
+  fprintf(stderr, "This will not be printed\n");
 }
 
 int main(void) {

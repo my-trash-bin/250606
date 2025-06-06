@@ -5,6 +5,7 @@
 #include <dlfcn.h>
 #include <stddef.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "../include/abt.h"
 
@@ -26,11 +27,12 @@ void *malloc(size_t size) {
   size_t branch = abt_branch(2);
 
   switch (branch) {
-  case 0:
+  case 0: {
     // case 0: simulate allocation failure
     abt_mark_as_failure();
     return NULL;
-  case 1:
+  }
+  case 1: {
     // case 1: simulate allocation success
     void *const result = real(size);
     if (!result) {
@@ -41,6 +43,9 @@ void *malloc(size_t size) {
       counter++;
     }
     return result;
+  }
+  default:
+    abort();
   }
 }
 
